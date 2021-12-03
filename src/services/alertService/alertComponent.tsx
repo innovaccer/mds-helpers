@@ -1,66 +1,57 @@
 import * as React from 'react';
 import { CSSProperties } from 'react';
 import { Toast } from '@innovaccer/design-system';
-import { AlertServiceToastProps } from './type';
+import { AlertComponentProps } from './type';
 
 interface AlertProps {
   onDismiss: (toastId: string, onClose?: () => void | undefined) => void;
-  alert: AlertServiceToastProps;
+  alert: AlertComponentProps;
   wrapId?: string;
   wrapClassName?: string;
-  bottom?: number;
-  top?: number;
-  addingNew?: boolean;
   leftOrRight: string;
   indexNumber: number;
   zIndex: number;
-  removingNew: boolean;
 }
 const AlertComponent = (props: AlertProps) => {
-  const {
-    alert,
-    wrapId,
-    wrapClassName,
-    bottom,
-    top,
-    leftOrRight,
-    onDismiss,
-    indexNumber,
-    addingNew,
-    zIndex,
-    removingNew
-  } = props;
+  const { alert, wrapId, wrapClassName, leftOrRight, onDismiss, indexNumber, zIndex } = props;
   const { appearance, toastId, onClose, dismissIn, toastClassName, autoHiderBar } = alert;
   const { style: autoHiderBarStyle, ...autoHiderBarProps } = autoHiderBar;
-  const [exit, setExit] = React.useState(false);
   const [width, setWidth] = React.useState(0);
-  const [intervalId, setIntervalId] = React.useState<any>(null);
   const toastStyle: CSSProperties = {
     position: 'fixed',
     zIndex: zIndex + 50,
     [leftOrRight]: '24px'
   };
+  const [direction, setDirection] = React.useState('');
+  const prevIndexNumber = React.useRef(indexNumber);
+  const timer = React.useRef<any>(null);
 
-  if (top) {
-    toastStyle.top = `calc(100% - ${top}px)`;
-  } else if (bottom) {
-    toastStyle.bottom = `${bottom}px`;
-  }
+  React.useEffect(() => {
+    if (indexNumber > prevIndexNumber.current) {
+      setDirection('down');
+      handlePauseTimer();
+    }
+    if (indexNumber < prevIndexNumber.current && indexNumber === 0) {
+      setDirection('up');
+      handleStartTimer();
+    }
+
+    prevIndexNumber.current = indexNumber;
+  }, [indexNumber]);
 
   const handlePauseTimer = () => {
-    clearInterval(intervalId);
-    setIntervalId(null);
+    clearInterval(timer.current!);
   };
 
   const handleCloseToast = () => {
     handlePauseTimer();
-    setExit(true);
+    setDirection('left');
     onDismiss(toastId, onClose);
   };
 
   const handleStartTimer = () => {
-    if (dismissIn && intervalId === null) {
-      const intId: NodeJS.Timeout = setInterval(() => {
+    if (dismissIn) {
+      const intId = setInterval(() => {
         setWidth(prev => {
           if (prev < 100) {
             return prev + 0.5;
@@ -69,36 +60,30 @@ const AlertComponent = (props: AlertProps) => {
           return prev;
         });
       }, dismissIn / 200);
-      setIntervalId(intId);
+      timer.current = intId;
     }
   };
 
   React.useEffect(() => {
-    if (indexNumber !== 0 && dismissIn) {
-      handlePauseTimer();
-    } else if (!addingNew && !removingNew && width === 100 && indexNumber === 0) {
-      handleCloseToast();
-    } else if (indexNumber === 0 && dismissIn) {
+    if (dismissIn) {
       handleStartTimer();
-  //    return () => clearInterval(intervalId);
     }
-  }, [indexNumber]);
+    setDirection('active');
+  }, []);
 
   React.useEffect(() => {
     if (width === 100 && indexNumber === 0) {
-      !addingNew && !removingNew ? handleCloseToast() : setWidth(80);
+      handleCloseToast();
     }
   }, [width]);
 
+  const className = `${wrapClassName} Toast--${appearance} alertService-${direction}`;
   return (
     <div
       id={wrapId}
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer}
-      className={`${wrapClassName} Toast--${appearance}
-      ${addingNew ? 'slidedown' : ''}
-      ${exit ? 'exit' : ''}
-      ${removingNew && indexNumber === 1 ? 'slideup' : ''}`}
+      className={className}
       style={toastStyle}
     >
       <Toast {...alert} onClose={handleCloseToast} data-test={wrapId} className={toastClassName} />

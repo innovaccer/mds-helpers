@@ -1,2 +1,2 @@
 export * from './index';
-export { AlertServiceToastProps } from './services/alertService';
+export { AlertComponentProps } from './services/alertService';

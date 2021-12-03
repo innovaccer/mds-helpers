@@ -1,3 +1,1 @@
-
-export { AlertService }  from './services/alertService';
-// @ts-ignore
+export { AlertService } from './services/alertService';

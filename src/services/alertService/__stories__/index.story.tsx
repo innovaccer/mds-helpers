@@ -1,17 +1,14 @@
 import * as React from 'react';
-import { throttle } from 'throttle-debounce';
 import { AlertService } from '@/index';
 import { Button, Textarea, Text } from '@innovaccer/design-system';
 
 export const Simple = () => {
-
   const alertService = new AlertService();
 
   const clickHandler = () => {
     const toast = {
-      dismissIn: 3500,
-      title: 'test',
-      appearance: 'info',
+      title: `test`,
+      appearance: 'info' as const,
       message: 'test message',
       actions: [
         {
@@ -25,9 +22,7 @@ export const Simple = () => {
 
   return (
     <>
-      <Button onClick={clickHandler}>
-        Add toast
-      </Button>
+      <Button onClick={clickHandler}>Add toast</Button>
     </>
   );
 };
@@ -38,16 +33,13 @@ export default {
 };
 
 const newAlert = new AlertService();
-const throttleFunc = throttle(3500, conf => {
-  newAlert.add(JSON.parse(conf));
-});
 const addT = (conf: string) => {
-  throttleFunc(conf);
+  newAlert.add(JSON.parse(conf));
 };
 
 // arbitrary js object:
 const myJsObj = {
-  dismissIn: 3500,
+  autoDismiss: true,
   title: 'test',
   appearance: 'info',
   message: 'test message',
@@ -58,13 +50,15 @@ const myJsObj = {
     }
   ]
 };
-// using JSON.stringify pretty print capability:
+
 const confSample = JSON.stringify(myJsObj, undefined, 4);
-export const Config = () => {
+export const AutoDismiss = () => {
   const [conf, setConf] = React.useState(confSample);
   return (
     <>
-      <div className="Row">
+      <Text>If autoDismiss is enabled toast will automatically disappear after</Text>
+      <Text weight="medium"> 8 secs.</Text>
+      <div className="Row mt-4">
         <div className="d-flex flex-column w-50">
           <label>Enter sample toast config :</label>
           <br />
@@ -76,16 +70,12 @@ export const Config = () => {
             cols={50}
           />
 
-          <Text>
-           {"AlertService.add({ title: 'test', appearance: 'info', message: 'test message' })"}
-          </Text>
+          <Text>{"AlertService.add({ title: 'test', appearance: 'info', message: 'test message' })"}</Text>
 
           <br />
         </div>
         <div className="Row m-auto justify-content-center w-50">
-          <Button onClick={() => addT(conf)}>
-            Add toast
-          </Button>
+          <Button onClick={() => addT(conf)}>Add toast</Button>
         </div>
       </div>
     </>
