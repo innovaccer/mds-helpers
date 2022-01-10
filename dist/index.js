@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1629362342524 
+   * Generated on: 1641794514860 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.1-3
+   *      Version: v1.0.1-4
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -12,7 +12,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom'), require('@innovaccer/design-system')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom', '@innovaccer/design-system'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.MDSHelpers = {}, global.React, global.ReactDOM, global.InnovaccerDesignSystem));
-}(this, (function (exports, React, ReactDOM, designSystem) { 'use strict';
+})(this, (function (exports, React, ReactDOM, designSystem) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -25,14 +25,12 @@
           var d = Object.getOwnPropertyDescriptor(e, k);
           Object.defineProperty(n, k, d.get ? d : {
             enumerable: true,
-            get: function () {
-              return e[k];
-            }
+            get: function () { return e[k]; }
           });
         }
       });
     }
-    n['default'] = e;
+    n["default"] = e;
     return Object.freeze(n);
   }
 
@@ -67,7 +65,7 @@
     }
   }
 
-  var css_248z = "@keyframes SlideLeft {\n  0% {\n    transform: translateX(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateX(-120%);\n    opacity: 0;\n  }\n}\n\n@keyframes SlideDown {\n  0% {\n    transform: translateY(0%);\n  }\n  100% {\n    transform: translateY(110%);\n  }\n}\n\n@keyframes SlideUp {\n  0% {\n    transform: translateY(0%);\n  }\n  100% {\n    transform: translateY(-115%);\n  }\n} \n\n.alertService.exit {\n  animation: SlideLeft 800ms;\n  animation-fill-mode: forwards;\n}\n\n.alertService.slidedown{\n  animation: SlideDown 800ms;\n  animation-fill-mode: forwards;\n}\n\n.alertService.slideup{\n  animation: SlideUp 800ms;\n  animation-delay: 0.5s;\n  animation-fill-mode: forwards;\n}\n\n.alertService-enter {\n  opacity: 0;\n  transform: translateX(-100%);\n}\n\n.alertService-enter.alertService-enter-active {\n  opacity: 1;\n  transform: translateX(0%);\n  transition: opacity 800ms ease-in, transform 800ms ease-in;\n}\n\n.alertService {\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);\n  border-radius: 8px;\n  overflow: hidden;\n  transition: all 800ms ease;\n}";
+  var css_248z = ".alertService {\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);\n  border-radius: 8px;\n  overflow: hidden;\n  bottom: 24px;\n  opacity: 0;\n  transition: all 240ms cubic-bezier(0, 0, 0.3, 1);\n  transform: translateX(-100%) translateX(-24px);\n}\n\n.alertService.alertService-active {\n  transition-delay: 240ms;\n  transform: translateX(0%);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-down {\n  transform: translateY(100%) translateY(16px);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-up {\n  transition-delay: 120ms;\n  transition-duration: 120ms;\n  transition-timing-function: cubic-bezier(0.4, 0.14, 1, 1);\n  transform: translateY(0%);\n  animation-fill-mode: forwards;\n  opacity: 1;\n}\n\n.alertService.alertService-left {\n  animation: 120ms cubic-bezier(0.4, 0.14, 1, 1);\n  animation-fill-mode: forwards;\n  opacity: 0.25;\n}\n\n.alertService:nth-child(n + 3) {\n  transform: translateY(200%) translateY(16px);\n}\n";
   styleInject(css_248z);
 
   /*! *****************************************************************************
@@ -108,15 +106,18 @@
       return t;
   }
 
+  /** @deprecated */
+  function __spreadArrays() {
+      for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+      for (var r = Array(s), k = 0, i = 0; i < il; i++)
+          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+              r[k] = a[j];
+      return r;
+  }
+
+  var toastId = 0;
   var uidGenerator = function uidGenerator() {
-    var dt = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = (dt + Math.random() * 16) % 16 | 0;
-      dt = Math.floor(dt / 16);
-      var s = (c === 'x' ? r : r & 0x3 | 0x8).toString(16);
-      return s;
-    });
-    return uuid;
+    return toastId++;
   };
   function pubSub() {
     var subscribers = {};
@@ -513,16 +514,22 @@
    * LICENSE file in the root directory of this source tree.
    */
 
-  var ReactPropTypesSecret$1 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+  var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-  var ReactPropTypesSecret_1 = ReactPropTypesSecret$1;
+  var ReactPropTypesSecret_1 = ReactPropTypesSecret$2;
+
+  var has$2 = Function.call.bind(Object.prototype.hasOwnProperty);
+
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
+
+  var has$1 = has$2;
 
   var printWarning$1 = function() {};
 
   if (process.env.NODE_ENV !== 'production') {
-    var ReactPropTypesSecret = ReactPropTypesSecret_1;
+    var ReactPropTypesSecret = ReactPropTypesSecret$1;
     var loggedTypeFailures = {};
-    var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
+    var has = has$1;
 
     printWarning$1 = function(text) {
       var message = 'Warning: ' + text;
@@ -534,7 +541,7 @@
         // This error was thrown as a convenience so that you can use this stack
         // to find the callsite that caused this warning to fire.
         throw new Error(message);
-      } catch (x) {}
+      } catch (x) { /**/ }
     };
   }
 
@@ -549,10 +556,10 @@
    * @param {?Function} getStack Returns the component stack.
    * @private
    */
-  function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
     if (process.env.NODE_ENV !== 'production') {
       for (var typeSpecName in typeSpecs) {
-        if (has$1(typeSpecs, typeSpecName)) {
+        if (has(typeSpecs, typeSpecName)) {
           var error;
           // Prop type validation may throw. In case they do, we don't want to
           // fail the render phase where it didn't fail before. So we log it.
@@ -563,7 +570,8 @@
             if (typeof typeSpecs[typeSpecName] !== 'function') {
               var err = Error(
                 (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-                'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+                'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' +
+                'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.'
               );
               err.name = 'Invariant Violation';
               throw err;
@@ -603,15 +611,16 @@
    *
    * @private
    */
-  checkPropTypes.resetWarningCache = function() {
+  checkPropTypes$1.resetWarningCache = function() {
     if (process.env.NODE_ENV !== 'production') {
       loggedTypeFailures = {};
     }
   };
 
-  var checkPropTypes_1 = checkPropTypes;
+  var checkPropTypes_1 = checkPropTypes$1;
 
-  var has = Function.call.bind(Object.prototype.hasOwnProperty);
+  var checkPropTypes = checkPropTypes_1;
+
   var printWarning = function() {};
 
   if (process.env.NODE_ENV !== 'production') {
@@ -712,6 +721,7 @@
     // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
     var ReactPropTypes = {
       array: createPrimitiveTypeChecker('array'),
+      bigint: createPrimitiveTypeChecker('bigint'),
       bool: createPrimitiveTypeChecker('boolean'),
       func: createPrimitiveTypeChecker('function'),
       number: createPrimitiveTypeChecker('number'),
@@ -757,8 +767,9 @@
      * is prohibitively expensive if they are created too often, such as what
      * happens in oneOfType() for any type before the one that matched.
      */
-    function PropTypeError(message) {
+    function PropTypeError(message, data) {
       this.message = message;
+      this.data = data && typeof data === 'object' ? data: {};
       this.stack = '';
     }
     // Make `instanceof Error` still work for returned errors.
@@ -773,7 +784,7 @@
         componentName = componentName || ANONYMOUS;
         propFullName = propFullName || propName;
 
-        if (secret !== ReactPropTypesSecret_1) {
+        if (secret !== ReactPropTypesSecret$1) {
           if (throwOnDirectAccess) {
             // New behavior only for users of `prop-types` package
             var err = new Error(
@@ -793,7 +804,7 @@
             ) {
               printWarning(
                 'You are manually calling a React.PropTypes validation ' +
-                'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
+                'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' +
                 'and will throw in the standalone `prop-types` package. ' +
                 'You may be seeing this warning due to a third-party PropTypes ' +
                 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
@@ -832,7 +843,10 @@
           // 'of type `object`'.
           var preciseType = getPreciseType(propValue);
 
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'),
+            {expectedType: expectedType}
+          );
         }
         return null;
       }
@@ -854,7 +868,7 @@
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
         }
         for (var i = 0; i < propValue.length; i++) {
-          var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+          var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret$1);
           if (error instanceof Error) {
             return error;
           }
@@ -946,8 +960,8 @@
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
         }
         for (var key in propValue) {
-          if (has(propValue, key)) {
-            var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          if (has$1(propValue, key)) {
+            var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret$1);
             if (error instanceof Error) {
               return error;
             }
@@ -976,14 +990,19 @@
       }
 
       function validate(props, propName, componentName, location, propFullName) {
+        var expectedTypes = [];
         for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
           var checker = arrayOfTypeCheckers[i];
-          if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1) == null) {
+          var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret$1);
+          if (checkerResult == null) {
             return null;
           }
+          if (checkerResult.data && has$1(checkerResult.data, 'expectedType')) {
+            expectedTypes.push(checkerResult.data.expectedType);
+          }
         }
-
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+        var expectedTypesMessage = (expectedTypes.length > 0) ? ', expected one of type [' + expectedTypes.join(', ') + ']': '';
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
       }
       return createChainableTypeChecker(validate);
     }
@@ -998,6 +1017,13 @@
       return createChainableTypeChecker(validate);
     }
 
+    function invalidValidatorError(componentName, location, propFullName, key, type) {
+      return new PropTypeError(
+        (componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' +
+        'it must be a function, usually from the `prop-types` package, but received `' + type + '`.'
+      );
+    }
+
     function createShapeTypeChecker(shapeTypes) {
       function validate(props, propName, componentName, location, propFullName) {
         var propValue = props[propName];
@@ -1007,10 +1033,10 @@
         }
         for (var key in shapeTypes) {
           var checker = shapeTypes[key];
-          if (!checker) {
-            continue;
+          if (typeof checker !== 'function') {
+            return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret$1);
           if (error) {
             return error;
           }
@@ -1027,19 +1053,21 @@
         if (propType !== 'object') {
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
         }
-        // We need to check all keys in case some are required but missing from
-        // props.
+        // We need to check all keys in case some are required but missing from props.
         var allKeys = objectAssign({}, props[propName], shapeTypes);
         for (var key in allKeys) {
           var checker = shapeTypes[key];
+          if (has$1(shapeTypes, key) && typeof checker !== 'function') {
+            return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+          }
           if (!checker) {
             return new PropTypeError(
               'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
               '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-              '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+              '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  ')
             );
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret$1);
           if (error) {
             return error;
           }
@@ -1181,8 +1209,8 @@
       return propValue.constructor.name;
     }
 
-    ReactPropTypes.checkPropTypes = checkPropTypes_1;
-    ReactPropTypes.resetWarningCache = checkPropTypes_1.resetWarningCache;
+    ReactPropTypes.checkPropTypes = checkPropTypes;
+    ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
     ReactPropTypes.PropTypes = ReactPropTypes;
 
     return ReactPropTypes;
@@ -1194,7 +1222,7 @@
 
   var factoryWithThrowingShims = function() {
     function shim(props, propName, componentName, location, propFullName, secret) {
-      if (secret === ReactPropTypesSecret_1) {
+      if (secret === ReactPropTypesSecret$1) {
         // It is still safe when called from React.
         return;
       }
@@ -1212,6 +1240,7 @@
     // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
     var ReactPropTypes = {
       array: shim,
+      bigint: shim,
       bool: shim,
       func: shim,
       number: shim,
@@ -1240,6 +1269,10 @@
     return ReactPropTypes;
   };
 
+  var require$$1 = factoryWithTypeCheckers;
+
+  var require$$2 = factoryWithThrowingShims;
+
   var propTypes = createCommonjsModule(function (module) {
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
@@ -1254,11 +1287,11 @@
     // By explicitly using `prop-types` you are opting into new development behavior.
     // http://fb.me/prop-types-in-prod
     var throwOnDirectAccess = true;
-    module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
+    module.exports = require$$1(ReactIs.isElement, throwOnDirectAccess);
   } else {
     // By explicitly using `prop-types` you are opting into new production behavior.
     // http://fb.me/prop-types-in-prod
-    module.exports = factoryWithThrowingShims();
+    module.exports = require$$2();
   }
   });
 
@@ -1362,7 +1395,7 @@
       return children;
     }
     var result = {};
-    React__default['default'].Children.map(children, function (child) {
+    React__default["default"].Children.map(children, function (child) {
       return child;
     }).forEach(function (child) {
       result[child.key] = child;
@@ -1440,6 +1473,8 @@
   ChildMapping.getChildMapping;
   ChildMapping.mergeChildMappings;
 
+  var _propTypes = propTypes;
+
   var TransitionGroup_1 = createCommonjsModule(function (module, exports) {
 
   exports.__esModule = true;
@@ -1452,11 +1487,11 @@
 
 
 
-  var _react2 = _interopRequireDefault(React__default['default']);
+  var _react2 = _interopRequireDefault(React__default["default"]);
 
 
 
-  var _propTypes2 = _interopRequireDefault(propTypes);
+  var _propTypes2 = _interopRequireDefault(_propTypes);
 
 
 
@@ -1472,7 +1507,7 @@
 
   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  var propTypes$1 = {
+  var propTypes = {
     component: _propTypes2.default.any,
     childFactory: _propTypes2.default.func,
     children: _propTypes2.default.node
@@ -1704,7 +1739,7 @@
   TransitionGroup.displayName = 'TransitionGroup';
 
 
-  TransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? propTypes$1 : {};
+  TransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? propTypes : {};
   TransitionGroup.defaultProps = defaultProps;
 
   exports.default = TransitionGroup;
@@ -1720,8 +1755,7 @@
     };
   }
 
-  module.exports = _interopRequireDefault;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
   });
 
   unwrapExports(interopRequireDefault);
@@ -1952,11 +1986,11 @@
 
 
 
-  _interopRequireDefault(React__default['default']);
+  _interopRequireDefault(React__default["default"]);
 
 
 
-  var _propTypes2 = _interopRequireDefault(propTypes);
+  var _propTypes2 = _interopRequireDefault(_propTypes);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2021,11 +2055,11 @@
 
 
 
-  var _react2 = _interopRequireDefault(React__default['default']);
+  var _react2 = _interopRequireDefault(React__default["default"]);
 
 
 
-  var _propTypes2 = _interopRequireDefault(propTypes);
+  var _propTypes2 = _interopRequireDefault(_propTypes);
 
 
 
@@ -2060,7 +2094,7 @@
     };
   }
 
-  var propTypes$1 = {
+  var propTypes = {
     children: _propTypes2.default.node,
     name: PropTypes.nameShape.isRequired,
 
@@ -2127,7 +2161,7 @@
     };
 
     CSSTransitionGroupChild.prototype.transition = function transition(animationType, finishCallback, timeout) {
-      var node = (0, ReactDOM__default['default'].findDOMNode)(this);
+      var node = (0, ReactDOM__default["default"].findDOMNode)(this);
 
       if (!node) {
         if (finishCallback) {
@@ -2224,7 +2258,7 @@
   CSSTransitionGroupChild.displayName = 'CSSTransitionGroupChild';
 
 
-  CSSTransitionGroupChild.propTypes = process.env.NODE_ENV !== "production" ? propTypes$1 : {};
+  CSSTransitionGroupChild.propTypes = process.env.NODE_ENV !== "production" ? propTypes : {};
 
   exports.default = CSSTransitionGroupChild;
   module.exports = exports['default'];
@@ -2240,11 +2274,11 @@
 
 
 
-  var _react2 = _interopRequireDefault(React__default['default']);
+  var _react2 = _interopRequireDefault(React__default["default"]);
 
 
 
-  var _propTypes2 = _interopRequireDefault(propTypes);
+  var _propTypes2 = _interopRequireDefault(_propTypes);
 
 
 
@@ -2264,7 +2298,7 @@
 
   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  var propTypes$1 = {
+  var propTypes = {
     transitionName: PropTypes.nameShape.isRequired,
 
     transitionAppear: _propTypes2.default.bool,
@@ -2321,7 +2355,7 @@
   CSSTransitionGroup.displayName = 'CSSTransitionGroup';
 
 
-  CSSTransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? propTypes$1 : {};
+  CSSTransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? propTypes : {};
   CSSTransitionGroup.defaultProps = defaultProps;
 
   exports.default = CSSTransitionGroup;
@@ -2338,14 +2372,10 @@
     var alert = props.alert,
         wrapId = props.wrapId,
         wrapClassName = props.wrapClassName,
-        bottom = props.bottom,
-        top = props.top,
         leftOrRight = props.leftOrRight,
         onDismiss = props.onDismiss,
         indexNumber = props.indexNumber,
-        addingNew = props.addingNew,
-        zIndex = props.zIndex,
-        removingNew = props.removingNew;
+        zIndex = props.zIndex;
     var appearance = alert.appearance,
         toastId = alert.toastId,
         onClose = alert.onClose,
@@ -2356,42 +2386,47 @@
     var autoHiderBarStyle = autoHiderBar.style,
         autoHiderBarProps = __rest(autoHiderBar, ["style"]);
 
-    var _b = React__namespace.useState(false),
-        exit = _b[0],
-        setExit = _b[1];
-
-    var _c = React__namespace.useState(0),
-        width = _c[0],
-        setWidth = _c[1];
-
-    var _d = React__namespace.useState(null),
-        intervalId = _d[0],
-        setIntervalId = _d[1];
+    var _b = React__namespace.useState(0),
+        width = _b[0],
+        setWidth = _b[1];
 
     var toastStyle = (_a = {
       position: 'fixed',
       zIndex: zIndex + 50
     }, _a[leftOrRight] = '24px', _a);
 
-    if (top) {
-      toastStyle.top = "calc(100% - " + top + "px)";
-    } else if (bottom) {
-      toastStyle.bottom = bottom + "px";
-    }
+    var _c = React__namespace.useState(''),
+        direction = _c[0],
+        setDirection = _c[1];
+
+    var prevIndexNumber = React__namespace.useRef(indexNumber);
+    var timer = React__namespace.useRef(null);
+    React__namespace.useEffect(function () {
+      if (indexNumber > prevIndexNumber.current) {
+        setDirection('down');
+        handlePauseTimer();
+      }
+
+      if (indexNumber < prevIndexNumber.current && indexNumber === 0) {
+        setDirection('up');
+        handleStartTimer();
+      }
+
+      prevIndexNumber.current = indexNumber;
+    }, [indexNumber]);
 
     var handlePauseTimer = function handlePauseTimer() {
-      clearInterval(intervalId);
-      setIntervalId(null);
+      clearInterval(timer.current);
     };
 
     var handleCloseToast = function handleCloseToast() {
       handlePauseTimer();
-      setExit(true);
+      setDirection('left');
       onDismiss(toastId, onClose);
     };
 
     var handleStartTimer = function handleStartTimer() {
-      if (dismissIn && intervalId === null) {
+      if (dismissIn) {
         var intId_1 = setInterval(function () {
           setWidth(function (prev) {
             if (prev < 100) {
@@ -2402,29 +2437,28 @@
             return prev;
           });
         }, dismissIn / 200);
-        setIntervalId(intId_1);
+        timer.current = intId_1;
       }
     };
 
     React__namespace.useEffect(function () {
-      if (indexNumber !== 0 && dismissIn) {
-        handlePauseTimer();
-      } else if (!addingNew && !removingNew && width === 100 && indexNumber === 0) {
-        handleCloseToast();
-      } else if (indexNumber === 0 && dismissIn) {
+      if (dismissIn) {
         handleStartTimer();
       }
-    }, [indexNumber]);
+
+      setDirection('active');
+    }, []);
     React__namespace.useEffect(function () {
       if (width === 100 && indexNumber === 0) {
-        !addingNew && !removingNew ? handleCloseToast() : setWidth(80);
+        handleCloseToast();
       }
     }, [width]);
+    var className = wrapClassName + " Toast--" + appearance + " alertService-" + direction;
     return /*#__PURE__*/React__namespace.createElement("div", {
       id: wrapId,
       onMouseEnter: handlePauseTimer,
       onMouseLeave: handleStartTimer,
-      className: wrapClassName + " Toast--" + appearance + "\n      " + (addingNew ? 'slidedown' : '') + "\n      " + (exit ? 'exit' : '') + "\n      " + (removingNew && indexNumber === 1 ? 'slideup' : ''),
+      className: className,
       style: toastStyle
     }, /*#__PURE__*/React__namespace.createElement(designSystem.Toast, __assign({}, alert, {
       onClose: handleCloseToast,
@@ -2437,8 +2471,6 @@
     })));
   };
 
-  var pendingToasts = [];
-
   var AlertContainer = function AlertContainer(props) {
     var pubSubService = props.pubSubService,
         defaultConfig = props.defaultConfig;
@@ -2449,78 +2481,17 @@
         alerts = _a[0],
         setAlerts = _a[1];
 
-    var _b = React__namespace.useState(false),
-        enterFlag = _b[0],
-        setEnterFlag = _b[1];
-
-    var _c = React__namespace.useState(false),
-        removeFlag = _c[0],
-        setRemoveFlag = _c[1];
-
-    var renderAlerts = function renderAlerts() {
-      return alerts.length > 0 ? alerts.map(renderSingleAlert) : null;
-    };
-
-    var renderSingleAlert = function renderSingleAlert(alert, i, alertsStack) {
-      var toastId = alert.toastId;
-      var calcBottom;
-      var calcTop;
-
-      if (i === 0) {
-        calcBottom = 32;
-      } else if (i === 1) {
-        calcTop = 20;
-      } else if (i === 2) {
-        try {
-          var prevEle = document.getElementById("alert-toast__" + alertsStack[i - 1].toastId);
-          var prevTop = prevEle ? prevEle.offsetHeight * 1 - 5 : new Error('Previous element not found');
-          calcTop = -prevTop;
-        } catch (error) {
-          calcTop = -20;
-        }
-      } else {
-        calcTop = -120;
-      }
-
-      return /*#__PURE__*/React__namespace.createElement(AlertComponent, {
-        bottom: calcBottom,
-        top: calcTop,
-        zIndex: alertsStack.length - i,
-        leftOrRight: position,
-        wrapId: "alert-toast__" + toastId,
-        alert: __assign(__assign({}, defaultConfig), alert),
-        key: toastId,
-        indexNumber: i,
-        wrapClassName: "alertService",
-        onDismiss: dismiss,
-        addingNew: enterFlag,
-        removingNew: removeFlag
+    var addToast = function addToast(toast) {
+      setAlerts(function (existing) {
+        return __spreadArrays([toast], existing);
       });
     };
 
-    var addToast = function addToast(toast) {
-      if (enterFlag) {
-        pendingToasts.push(toast);
-      } else {
-        setEnterFlag(true);
-        setTimeout(function () {
-          var nalerts = alerts.slice();
-          nalerts.unshift(toast);
-          setEnterFlag(false);
-          setAlerts(nalerts);
-        }, transitionDelay);
-      }
-    };
-
     var removeToast = function removeToast(toastId) {
-      setRemoveFlag(true);
-      setTimeout(function () {
-        var ralerts = alerts.slice().filter(function (alert) {
-          return alert.toastId !== toastId;
-        });
-        setAlerts(ralerts);
-        setRemoveFlag(false);
-      }, transitionDelay + 500);
+      var filteredAlerts = alerts.slice().filter(function (alert) {
+        return alert.toastId !== toastId;
+      });
+      setAlerts(filteredAlerts);
     };
 
     React__namespace.useEffect(function () {
@@ -2530,33 +2501,44 @@
         addUnsub();
         removeUnsub();
       };
-    });
-    React__namespace.useEffect(function () {
-      if (!enterFlag && pendingToasts.length) {
-        var newToast_1 = pendingToasts.shift();
-
-        if (newToast_1) {
-          setTimeout(function () {
-            return addToast(newToast_1);
-          }, 900);
-        }
-      }
-    }, [alerts]);
+    }, []);
 
     var dismiss = function dismiss(id, onClose) {
       removeToast(id);
       return onClose ? onClose() : null;
     };
 
+    var getDismissIn = function getDismissIn(alert) {
+      var dismissIn;
+
+      if (alert.dismissIn) {
+        dismissIn = alert.dismissIn + transitionDelay;
+      }
+
+      return dismissIn;
+    };
+
     return /*#__PURE__*/React__namespace.createElement(reactAddonsCssTransitionGroup, {
       transitionName: "alertService",
       transitionEnterTimeout: transitionDelay,
       transitionLeaveTimeout: transitionDelay
-    }, renderAlerts());
+    }, alerts.length > 0 ? alerts.map(function (alert, i, alertsStack) {
+      return /*#__PURE__*/React__namespace.createElement(AlertComponent, {
+        zIndex: alertsStack.length - i,
+        leftOrRight: position,
+        wrapId: "alert-toast__" + alert.toastId,
+        alert: __assign(__assign(__assign({}, defaultConfig), alert), {
+          dismissIn: getDismissIn(alert)
+        }),
+        key: alert.toastId,
+        indexNumber: i,
+        wrapClassName: "alertService",
+        onDismiss: dismiss
+      });
+    }) : null);
   };
 
   var defaultConf = {
-    dismissIn: 3000,
     autoHiderBar: {
       style: {
         height: '3px',
@@ -2565,9 +2547,9 @@
       }
     },
     position: 'left',
-    transitionDelay: 800,
+    transitionDelay: 240,
     appearance: 'alert',
-    title: 'Some error occurred'
+    title: 'Something went wrong.'
   };
 
   var AlertService = function () {
@@ -2593,14 +2575,14 @@
         _this.removeAlertService();
 
         document.body.appendChild(_this.elem);
-        ReactDOM__default['default'].render( /*#__PURE__*/React__namespace.createElement(AlertContainer, {
+        ReactDOM__default["default"].render( /*#__PURE__*/React__namespace.createElement(AlertContainer, {
           pubSubService: _this.pubSubService,
           defaultConfig: fullConf
         }), _this.elem);
       };
 
       this.removeAlertService = function () {
-        var removed = ReactDOM__default['default'].unmountComponentAtNode(_this.elem);
+        var removed = ReactDOM__default["default"].unmountComponentAtNode(_this.elem);
         return removed;
       };
 
@@ -2608,7 +2590,14 @@
         return _this.pubSubService.publish('remove-toast', toastId);
       };
 
-      this.add = function (toast) {
+      this.add = function (alert) {
+        var toast = alert;
+        toast.dismissIn = undefined;
+
+        if (alert.autoDismiss) {
+          toast.dismissIn = 8000;
+        }
+
         var toastId = _this.pubSubService.publish('add-toast', toast);
 
         return toastId;
@@ -2627,5 +2616,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=index.js.map

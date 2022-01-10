@@ -1,6 +1,6 @@
 
 -------------------
- **v1.0.1-3**  (2021-08-19) 
+ **v1.0.1-4**  (2022-01-10) 
 
-* 7093b12 v1.0.1-3
-* 97e2e06 fix: z-index
+* c769614 v1.0.1-4
+* cb9c1b3 fix(alert-service): use css for animation remove overhead code
