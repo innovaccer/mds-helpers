@@ -16,7 +16,7 @@ const AlertComponent = (props: AlertProps) => {
   const { alert, wrapId, wrapClassName, leftOrRight, onDismiss, indexNumber, zIndex } = props;
   const { appearance, toastId, onClose, dismissIn, toastClassName, autoHiderBar } = alert;
   const { style: autoHiderBarStyle, ...autoHiderBarProps } = autoHiderBar;
-  const [width, setWidth] = React.useState(0);
+  const [width, setWidth] = React.useState(100);
   const toastStyle: CSSProperties = {
     position: 'fixed',
     zIndex: zIndex + 50,
@@ -53,8 +53,8 @@ const AlertComponent = (props: AlertProps) => {
     if (dismissIn) {
       const intId = setInterval(() => {
         setWidth(prev => {
-          if (prev < 100) {
-            return prev + 0.5;
+          if (prev > 0) {
+            return prev - 0.5;
           }
           clearInterval(intId);
           return prev;
@@ -72,12 +72,13 @@ const AlertComponent = (props: AlertProps) => {
   }, []);
 
   React.useEffect(() => {
-    if (width === 100 && indexNumber === 0) {
+    if (width === 0 && indexNumber === 0) {
       handleCloseToast();
     }
   }, [width]);
 
   const className = `${wrapClassName} Toast--${appearance} alertService-${direction}`;
+  const autoHideBarOpacity = appearance === 'info' ? 'rgb(0,0,0,50%)' : 'rgb(0,0,0,40%)';
   return (
     <div
       id={wrapId}
@@ -86,16 +87,17 @@ const AlertComponent = (props: AlertProps) => {
       className={className}
       style={toastStyle}
     >
-      <Toast {...alert} onClose={handleCloseToast} data-test={wrapId} className={toastClassName} />
       {autoHiderBar && dismissIn && indexNumber === 0 && (
         <div
           {...autoHiderBarProps}
           style={{
             width: `${width}%`,
-            ...autoHiderBarStyle
+            ...autoHiderBarStyle,
+            backgroundColor: autoHideBarOpacity
           }}
         />
       )}
+      <Toast {...alert} onClose={handleCloseToast} data-test={wrapId} className={toastClassName} />
     </div>
   );
 };

@@ -62,24 +62,24 @@ const AlertContainer = (props: AlertContainerProps) => {
     >
       {alerts.length > 0
         ? alerts.map((alert, i, alertsStack) => {
-            return (
-              <AlertComponent
-                zIndex={alertsStack.length - i}
-                leftOrRight={position}
-                wrapId={`alert-toast__${alert.toastId}`}
-                alert={{
-                  ...defaultConfig,
-                  ...alert,
-                  dismissIn: getDismissIn(alert)
-                }}
-                key={alert.toastId}
-                indexNumber={i}
-                wrapClassName="alertService"
-                onDismiss={dismiss}
-              />
-            );
-          })
-        : null}
+          return (
+            <AlertComponent
+              zIndex={alertsStack.length - i}
+              leftOrRight={position}
+              wrapId={`alert-toast__${alert.toastId}`}
+              alert={{
+                ...defaultConfig,
+                ...alert,
+                dismissIn: getDismissIn(alert)
+              }}
+              key={alert.toastId}
+              indexNumber={i}
+              wrapClassName="alertService"
+              onDismiss={dismiss}
+            />
+          );
+        })
+      : null}
     </ReactCSSTransitionGroup>
   );
 };
