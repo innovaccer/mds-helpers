@@ -7,7 +7,7 @@ export const Simple = () => {
 
   const clickHandler = () => {
     const toast = {
-      title: `test`,
+      title: 'test',
       appearance: 'info' as const,
       message: 'test message',
       actions: [
@@ -43,6 +43,7 @@ const myJsObj = {
   title: 'test',
   appearance: 'info',
   message: 'test message',
+  dismissIn: 8000,
   actions: [
     {
       label: 'button label',
@@ -57,7 +58,9 @@ export const AutoDismiss = () => {
   return (
     <>
       <Text>If autoDismiss is enabled toast will automatically disappear after</Text>
-      <Text weight="medium"> 8 secs.</Text>
+      <Text weight="medium"> 5 secs</Text>
+      <Text> and if dismissIn is also given toast will automatically disappear after given time.</Text>
+      <Text> dismissIn should be in Milliseconds</Text>
       <div className="Row mt-4">
         <div className="d-flex flex-column w-50">
           <label>Enter sample toast config :</label>

@@ -7,15 +7,17 @@ import AlertContainer from './alertContainer';
 const defaultConf = {
   autoHiderBar: {
     style: {
-      height: '3px',
-      borderRadius: '5px',
-      backgroundColor: 'rgb(0,0,0,35%)'
+      height: '4px',
+      borderTopRightRadius: '2px',
+      borderBottomRightRadius: '2px',
+      backgroundColor: 'rgb(0,0,0,40%)'
     }
   },
   position: 'left',
   transitionDelay: 240,
   appearance: 'alert',
-  title: 'Something went wrong.'
+  title: 'Something went wrong.',
+  dismissIn: 5000
 };
 export interface AlertServiceConfig {
   dismissIn?: number;
@@ -53,32 +55,30 @@ export class AlertService {
     this.elem.setAttribute('id', 'alertService-container');
     this.elem.style.position = 'relative';
     this.elem.style.zIndex = '2147483647';
-  };
+  }
 
   renderAlert = (config: AlertServiceConfig) => {
     const fullConf = { ...this.config, ...config };
     this.removeAlertService();
     document.body.appendChild(this.elem);
     ReactDOM.render(<AlertContainer pubSubService={this.pubSubService} defaultConfig={fullConf} />, this.elem);
-  };
+  }
 
   removeAlertService = () => {
     const removed = ReactDOM.unmountComponentAtNode(this.elem);
     return removed;
-  };
+  }
 
   remove = (toastId: string) => this.pubSubService.publish('remove-toast', toastId);
 
   add = (alert: IAlert) => {
     const toast: IRawToast = alert;
-
-    toast.dismissIn = undefined;
     if (alert.autoDismiss) {
-      toast.dismissIn = 8000;
+      toast.dismissIn = toast.dismissIn || 5000;
     }
     const toastId = this.pubSubService.publish('add-toast', toast);
     return toastId;
-  };
+  }
 }
 
 export default AlertService;
