@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1641794514860 
+   * Generated on: 1664266222798 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.1-4
+   *      Version: v1.0.1
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -68,7 +68,7 @@
   var css_248z = ".alertService {\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);\n  border-radius: 8px;\n  overflow: hidden;\n  bottom: 24px;\n  opacity: 0;\n  transition: all 240ms cubic-bezier(0, 0, 0.3, 1);\n  transform: translateX(-100%) translateX(-24px);\n}\n\n.alertService.alertService-active {\n  transition-delay: 240ms;\n  transform: translateX(0%);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-down {\n  transform: translateY(100%) translateY(16px);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-up {\n  transition-delay: 120ms;\n  transition-duration: 120ms;\n  transition-timing-function: cubic-bezier(0.4, 0.14, 1, 1);\n  transform: translateY(0%);\n  animation-fill-mode: forwards;\n  opacity: 1;\n}\n\n.alertService.alertService-left {\n  animation: 120ms cubic-bezier(0.4, 0.14, 1, 1);\n  animation-fill-mode: forwards;\n  opacity: 0.25;\n}\n\n.alertService:nth-child(n + 3) {\n  transform: translateY(200%) translateY(16px);\n}\n";
   styleInject(css_248z);
 
-  /*! *****************************************************************************
+  /******************************************************************************
   Copyright (c) Microsoft Corporation.
 
   Permission to use, copy, modify, and/or distribute this software for any
@@ -2386,7 +2386,7 @@
     var autoHiderBarStyle = autoHiderBar.style,
         autoHiderBarProps = __rest(autoHiderBar, ["style"]);
 
-    var _b = React__namespace.useState(0),
+    var _b = React__namespace.useState(100),
         width = _b[0],
         setWidth = _b[1];
 
@@ -2429,8 +2429,8 @@
       if (dismissIn) {
         var intId_1 = setInterval(function () {
           setWidth(function (prev) {
-            if (prev < 100) {
-              return prev + 0.5;
+            if (prev > 0) {
+              return prev - 0.5;
             }
 
             clearInterval(intId_1);
@@ -2449,25 +2449,28 @@
       setDirection('active');
     }, []);
     React__namespace.useEffect(function () {
-      if (width === 100 && indexNumber === 0) {
+      if (width === 0 && indexNumber === 0) {
         handleCloseToast();
       }
     }, [width]);
     var className = wrapClassName + " Toast--" + appearance + " alertService-" + direction;
+    var autoHideBarOpacity = appearance === 'info' ? 'rgb(0,0,0,50%)' : 'rgb(0,0,0,40%)';
     return /*#__PURE__*/React__namespace.createElement("div", {
       id: wrapId,
       onMouseEnter: handlePauseTimer,
       onMouseLeave: handleStartTimer,
       className: className,
       style: toastStyle
-    }, /*#__PURE__*/React__namespace.createElement(designSystem.Toast, __assign({}, alert, {
+    }, autoHiderBar && dismissIn && indexNumber === 0 && /*#__PURE__*/React__namespace.createElement("div", __assign({}, autoHiderBarProps, {
+      style: __assign(__assign({
+        width: width + "%"
+      }, autoHiderBarStyle), {
+        backgroundColor: autoHideBarOpacity
+      })
+    })), /*#__PURE__*/React__namespace.createElement(designSystem.Toast, __assign({}, alert, {
       onClose: handleCloseToast,
       "data-test": wrapId,
       className: toastClassName
-    })), autoHiderBar && dismissIn && indexNumber === 0 && /*#__PURE__*/React__namespace.createElement("div", __assign({}, autoHiderBarProps, {
-      style: __assign({
-        width: width + "%"
-      }, autoHiderBarStyle)
     })));
   };
 
@@ -2541,15 +2544,17 @@
   var defaultConf = {
     autoHiderBar: {
       style: {
-        height: '3px',
-        borderRadius: '5px',
-        backgroundColor: 'rgb(0,0,0,35%)'
+        height: '4px',
+        borderTopRightRadius: '2px',
+        borderBottomRightRadius: '2px',
+        backgroundColor: 'rgb(0,0,0,40%)'
       }
     },
     position: 'left',
     transitionDelay: 240,
     appearance: 'alert',
-    title: 'Something went wrong.'
+    title: 'Something went wrong.',
+    dismissIn: 5000
   };
 
   var AlertService = function () {
@@ -2592,10 +2597,9 @@
 
       this.add = function (alert) {
         var toast = alert;
-        toast.dismissIn = undefined;
 
         if (alert.autoDismiss) {
-          toast.dismissIn = 8000;
+          toast.dismissIn = toast.dismissIn || 5000;
         }
 
         var toastId = _this.pubSubService.publish('add-toast', toast);

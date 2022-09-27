@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1641794514572 
+   * Generated on: 1664266222613 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.1-4
+   *      Version: v1.0.1
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -135,7 +135,7 @@
   }
 
   function _extends() {
-    _extends = Object.assign || function (target) {
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
 
@@ -148,7 +148,6 @@
 
       return target;
     };
-
     return _extends.apply(this, arguments);
   }
 
@@ -1518,7 +1517,7 @@
     var autoHiderBarStyle = autoHiderBar.style,
         autoHiderBarProps = _objectWithoutProperties(autoHiderBar, _excluded);
 
-    var _React$useState = React__namespace.useState(0),
+    var _React$useState = React__namespace.useState(100),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         width = _React$useState2[0],
         setWidth = _React$useState2[1];
@@ -1563,8 +1562,8 @@
       if (dismissIn) {
         var intId = setInterval(function () {
           setWidth(function (prev) {
-            if (prev < 100) {
-              return prev + 0.5;
+            if (prev > 0) {
+              return prev - 0.5;
             }
 
             clearInterval(intId);
@@ -1583,25 +1582,28 @@
       setDirection('active');
     }, []);
     React__namespace.useEffect(function () {
-      if (width === 100 && indexNumber === 0) {
+      if (width === 0 && indexNumber === 0) {
         handleCloseToast();
       }
     }, [width]);
     var className = "".concat(wrapClassName, " Toast--").concat(appearance, " alertService-").concat(direction);
+    var autoHideBarOpacity = appearance === 'info' ? 'rgb(0,0,0,50%)' : 'rgb(0,0,0,40%)';
     return /*#__PURE__*/React__namespace.createElement("div", {
       id: wrapId,
       onMouseEnter: handlePauseTimer,
       onMouseLeave: handleStartTimer,
       className: className,
       style: toastStyle
-    }, /*#__PURE__*/React__namespace.createElement(designSystem.Toast, _extends({}, alert, {
+    }, autoHiderBar && dismissIn && indexNumber === 0 && /*#__PURE__*/React__namespace.createElement("div", _extends({}, autoHiderBarProps, {
+      style: _objectSpread2(_objectSpread2({
+        width: "".concat(width, "%")
+      }, autoHiderBarStyle), {}, {
+        backgroundColor: autoHideBarOpacity
+      })
+    })), /*#__PURE__*/React__namespace.createElement(designSystem.Toast, _extends({}, alert, {
       onClose: handleCloseToast,
       "data-test": wrapId,
       className: toastClassName
-    })), autoHiderBar && dismissIn && indexNumber === 0 && /*#__PURE__*/React__namespace.createElement("div", _extends({}, autoHiderBarProps, {
-      style: _objectSpread2({
-        width: "".concat(width, "%")
-      }, autoHiderBarStyle)
     })));
   };
 
@@ -1679,15 +1681,17 @@
   var defaultConf = {
     autoHiderBar: {
       style: {
-        height: '3px',
-        borderRadius: '5px',
-        backgroundColor: 'rgb(0,0,0,35%)'
+        height: '4px',
+        borderTopRightRadius: '2px',
+        borderBottomRightRadius: '2px',
+        backgroundColor: 'rgb(0,0,0,40%)'
       }
     },
     position: 'left',
     transitionDelay: 240,
     appearance: 'alert',
-    title: 'Something went wrong.'
+    title: 'Something went wrong.',
+    dismissIn: 5000
   };
   var AlertService = /*#__PURE__*/_createClass(function AlertService() {
     var _this = this;
@@ -1734,10 +1738,9 @@
 
     _defineProperty(this, "add", function (alert) {
       var toast = alert;
-      toast.dismissIn = undefined;
 
       if (alert.autoDismiss) {
-        toast.dismissIn = 8000;
+        toast.dismissIn = toast.dismissIn || 5000;
       }
 
       var toastId = _this.pubSubService.publish('add-toast', toast);

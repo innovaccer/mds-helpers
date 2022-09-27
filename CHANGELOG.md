@@ -2,10 +2,6 @@
 -------------------
  **v1.0.1**  (2022-09-27) 
 
-* 031c1cc feat(alert-service): add dismissIn props
-
--------------------
- **v1.0.1-4**  (2022-01-10) 
-
-* c769614 v1.0.1-4
-* cb9c1b3 fix(alert-service): use css for animation remove overhead code
+* 1f9f845 v1.0.1
+* 690ca3f chore: update changelog.md
+* 031c1cc feat(toast): add timeout behaviour and add css to hidebar (#5)
