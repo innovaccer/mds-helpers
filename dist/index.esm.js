@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1664266222613 
+   * Generated on: 1671778026158 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.1
+   *      Version: v1.0.2
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -43,19 +43,43 @@ function styleInject(css, ref) {
 var css_248z = ".alertService {\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);\n  border-radius: 8px;\n  overflow: hidden;\n  bottom: 24px;\n  opacity: 0;\n  transition: all 240ms cubic-bezier(0, 0, 0.3, 1);\n  transform: translateX(-100%) translateX(-24px);\n}\n\n.alertService.alertService-active {\n  transition-delay: 240ms;\n  transform: translateX(0%);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-down {\n  transform: translateY(100%) translateY(16px);\n  opacity: 1;\n  animation-fill-mode: forwards;\n}\n\n.alertService.alertService-up {\n  transition-delay: 120ms;\n  transition-duration: 120ms;\n  transition-timing-function: cubic-bezier(0.4, 0.14, 1, 1);\n  transform: translateY(0%);\n  animation-fill-mode: forwards;\n  opacity: 1;\n}\n\n.alertService.alertService-left {\n  animation: 120ms cubic-bezier(0.4, 0.14, 1, 1);\n  animation-fill-mode: forwards;\n  opacity: 0.25;\n}\n\n.alertService:nth-child(n + 3) {\n  transform: translateY(200%) translateY(16px);\n}\n";
 styleInject(css_248z);
 
+function _iterableToArrayLimit(arr, i) {
+  var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+  if (null != _i) {
+    var _s,
+      _e,
+      _x,
+      _r,
+      _arr = [],
+      _n = !0,
+      _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, 0 === i) {
+        if (Object(_i) !== _i) return;
+        _n = !1;
+      } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0);
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return;
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+}
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
-
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
     enumerableOnly && (symbols = symbols.filter(function (sym) {
       return Object.getOwnPropertyDescriptor(object, sym).enumerable;
     })), keys.push.apply(keys, symbols);
   }
-
   return keys;
 }
-
 function _objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = null != arguments[i] ? arguments[i] : {};
@@ -65,26 +89,22 @@ function _objectSpread2(target) {
       Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
     });
   }
-
   return target;
 }
-
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
-
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
+    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
   }
 }
-
 function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
@@ -93,8 +113,8 @@ function _createClass(Constructor, protoProps, staticProps) {
   });
   return Constructor;
 }
-
 function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -105,52 +125,40 @@ function _defineProperty(obj, key, value) {
   } else {
     obj[key] = value;
   }
-
   return obj;
 }
-
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
-
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           target[key] = source[key];
         }
       }
     }
-
     return target;
   };
   return _extends.apply(this, arguments);
 }
-
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
   var sourceKeys = Object.keys(source);
   var key, i;
-
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
     if (excluded.indexOf(key) >= 0) continue;
     target[key] = source[key];
   }
-
   return target;
 }
-
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
-
   var target = _objectWithoutPropertiesLoose(source, excluded);
-
   var key, i;
-
   if (Object.getOwnPropertySymbols) {
     var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
       if (excluded.indexOf(key) >= 0) continue;
@@ -158,60 +166,23 @@ function _objectWithoutProperties(source, excluded) {
       target[key] = source[key];
     }
   }
-
   return target;
 }
-
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
-
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
-
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return _arrayLikeToArray(arr);
 }
-
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
-
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
 }
-
-function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-
-  if (_i == null) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-
-  var _s, _e;
-
-  try {
-    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
@@ -220,21 +191,30 @@ function _unsupportedIterableToArray(o, minLen) {
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
-
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
-
   for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
   return arr2;
 }
-
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return typeof key === "symbol" ? key : String(key);
 }
 
 var toastId = 0;
@@ -243,12 +223,10 @@ var uidGenerator = function uidGenerator() {
 };
 function pubSub() {
   var subscribers = {};
-
   function publish(eventName, data) {
     if (!Array.isArray(subscribers[eventName])) {
       return;
     }
-
     var toastId = uidGenerator();
     subscribers[eventName].forEach(function (callback) {
       callback(_objectSpread2(_objectSpread2({}, data), {}, {
@@ -257,19 +235,16 @@ function pubSub() {
     });
     return toastId;
   }
-
   function subscribe(eventName, callback) {
     if (!Array.isArray(subscribers[eventName])) {
       subscribers[eventName] = [];
     }
-
     subscribers[eventName].push(callback);
     var index = subscribers[eventName].length - 1;
     return function () {
       return subscribers[eventName].splice(index, 1);
     };
   }
-
   return {
     publish: publish,
     subscribe: subscribe
@@ -860,7 +835,6 @@ function _interopRequireDefault(obj) {
     "default": obj
   };
 }
-
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
@@ -1473,40 +1447,34 @@ unwrapExports(CSSTransitionGroup_1);
 var reactAddonsCssTransitionGroup = CSSTransitionGroup_1;
 
 var _excluded = ["style"];
-
 var AlertComponent = function AlertComponent(props) {
   var alert = props.alert,
-      wrapId = props.wrapId,
-      wrapClassName = props.wrapClassName,
-      leftOrRight = props.leftOrRight,
-      onDismiss = props.onDismiss,
-      indexNumber = props.indexNumber,
-      zIndex = props.zIndex;
+    wrapId = props.wrapId,
+    wrapClassName = props.wrapClassName,
+    leftOrRight = props.leftOrRight,
+    onDismiss = props.onDismiss,
+    indexNumber = props.indexNumber,
+    zIndex = props.zIndex;
   var appearance = alert.appearance,
-      toastId = alert.toastId,
-      onClose = alert.onClose,
-      dismissIn = alert.dismissIn,
-      toastClassName = alert.toastClassName,
-      autoHiderBar = alert.autoHiderBar;
-
+    toastId = alert.toastId,
+    onClose = alert.onClose,
+    dismissIn = alert.dismissIn,
+    toastClassName = alert.toastClassName,
+    autoHiderBar = alert.autoHiderBar;
   var autoHiderBarStyle = autoHiderBar.style,
-      autoHiderBarProps = _objectWithoutProperties(autoHiderBar, _excluded);
-
+    autoHiderBarProps = _objectWithoutProperties(autoHiderBar, _excluded);
   var _React$useState = React.useState(100),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      width = _React$useState2[0],
-      setWidth = _React$useState2[1];
-
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    width = _React$useState2[0],
+    setWidth = _React$useState2[1];
   var toastStyle = _defineProperty({
     position: 'fixed',
     zIndex: zIndex + 50
   }, leftOrRight, '24px');
-
   var _React$useState3 = React.useState(''),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      direction = _React$useState4[0],
-      setDirection = _React$useState4[1];
-
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    direction = _React$useState4[0],
+    setDirection = _React$useState4[1];
   var prevIndexNumber = React.useRef(indexNumber);
   var timer = React.useRef(null);
   React.useEffect(function () {
@@ -1514,25 +1482,20 @@ var AlertComponent = function AlertComponent(props) {
       setDirection('down');
       handlePauseTimer();
     }
-
     if (indexNumber < prevIndexNumber.current && indexNumber === 0) {
       setDirection('up');
       handleStartTimer();
     }
-
     prevIndexNumber.current = indexNumber;
   }, [indexNumber]);
-
   var handlePauseTimer = function handlePauseTimer() {
     clearInterval(timer.current);
   };
-
   var handleCloseToast = function handleCloseToast() {
     handlePauseTimer();
     setDirection('left');
     onDismiss(toastId, onClose);
   };
-
   var handleStartTimer = function handleStartTimer() {
     if (dismissIn) {
       var intId = setInterval(function () {
@@ -1540,7 +1503,6 @@ var AlertComponent = function AlertComponent(props) {
           if (prev > 0) {
             return prev - 0.5;
           }
-
           clearInterval(intId);
           return prev;
         });
@@ -1548,12 +1510,10 @@ var AlertComponent = function AlertComponent(props) {
       timer.current = intId;
     }
   };
-
   React.useEffect(function () {
     if (dismissIn) {
       handleStartTimer();
     }
-
     setDirection('active');
   }, []);
   React.useEffect(function () {
@@ -1584,28 +1544,24 @@ var AlertComponent = function AlertComponent(props) {
 
 var AlertContainer = function AlertContainer(props) {
   var pubSubService = props.pubSubService,
-      defaultConfig = props.defaultConfig;
+    defaultConfig = props.defaultConfig;
   var transitionDelay = defaultConfig.transitionDelay,
-      position = defaultConfig.position;
-
+    position = defaultConfig.position;
   var _React$useState = React.useState([]),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      alerts = _React$useState2[0],
-      setAlerts = _React$useState2[1];
-
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    alerts = _React$useState2[0],
+    setAlerts = _React$useState2[1];
   var addToast = function addToast(toast) {
     setAlerts(function (existing) {
       return [toast].concat(_toConsumableArray(existing));
     });
   };
-
   var removeToast = function removeToast(toastId) {
     var filteredAlerts = alerts.slice().filter(function (alert) {
       return alert.toastId !== toastId;
     });
     setAlerts(filteredAlerts);
   };
-
   React.useEffect(function () {
     var addUnsub = pubSubService.subscribe('add-toast', addToast);
     var removeUnsub = pubSubService.subscribe('remove-toast', removeToast);
@@ -1614,25 +1570,21 @@ var AlertContainer = function AlertContainer(props) {
       removeUnsub();
     };
   }, []);
-
   var dismiss = function dismiss(id, onClose) {
     removeToast(id);
     return onClose ? onClose() : null;
   };
-
   var getDismissIn = function getDismissIn(alert) {
-    var dismissIn; // as we have delay in animation
+    var dismissIn;
+    // as we have delay in animation
     // timer will start even before
     // toast appears on screen
     // to avoid this we are adding transitionDelay
-
     if (alert.dismissIn) {
       dismissIn = alert.dismissIn + transitionDelay;
     }
-
     return dismissIn;
   };
-
   return /*#__PURE__*/React.createElement(reactAddonsCssTransitionGroup, {
     transitionName: "alertService",
     transitionEnterTimeout: transitionDelay,
@@ -1670,59 +1622,41 @@ var defaultConf = {
 };
 var AlertService = /*#__PURE__*/_createClass(function AlertService() {
   var _this = this;
-
   var _config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
   _classCallCheck(this, AlertService);
-
   _defineProperty(this, "elem", void 0);
-
   _defineProperty(this, "pubSubService", void 0);
-
   _defineProperty(this, "config", void 0);
-
   _defineProperty(this, "createDivContainer", function () {
     _this.elem = document.createElement('div');
-
     _this.elem.setAttribute('id', 'alertService-container');
-
     _this.elem.style.position = 'relative';
     _this.elem.style.zIndex = '2147483647';
   });
-
   _defineProperty(this, "renderAlert", function (config) {
     var fullConf = _objectSpread2(_objectSpread2({}, _this.config), config);
-
     _this.removeAlertService();
-
     document.body.appendChild(_this.elem);
     ReactDOM.render( /*#__PURE__*/React.createElement(AlertContainer, {
       pubSubService: _this.pubSubService,
       defaultConfig: fullConf
     }), _this.elem);
   });
-
   _defineProperty(this, "removeAlertService", function () {
     var removed = ReactDOM.unmountComponentAtNode(_this.elem);
     return removed;
   });
-
   _defineProperty(this, "remove", function (toastId) {
     return _this.pubSubService.publish('remove-toast', toastId);
   });
-
   _defineProperty(this, "add", function (alert) {
     var toast = alert;
-
     if (alert.autoDismiss) {
       toast.dismissIn = toast.dismissIn || 5000;
     }
-
     var toastId = _this.pubSubService.publish('add-toast', toast);
-
     return toastId;
   });
-
   // create toast container
   this.createDivContainer();
   this.pubSubService = pubSub();

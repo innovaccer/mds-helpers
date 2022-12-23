@@ -1,7 +1,7 @@
 
 -------------------
- **v1.0.1**  (2022-09-27) 
+ **v1.0.2**  (2022-12-23) 
 
-* 1f9f845 v1.0.1
-* 690ca3f chore: update changelog.md
-* 031c1cc feat(toast): add timeout behaviour and add css to hidebar (#5)
+* e049793 v1.0.2
+* 9e7f4f2 fix(AlertService): separates simple & autoDismiss stories
+* ac38a54 fix: babel__traverse version & package-lock added

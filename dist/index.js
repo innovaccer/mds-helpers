@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1664266222798 
+   * Generated on: 1671778026327 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.1
+   *      Version: v1.0.2
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -121,12 +121,10 @@
   };
   function pubSub() {
     var subscribers = {};
-
     function publish(eventName, data) {
       if (!Array.isArray(subscribers[eventName])) {
         return;
       }
-
       var toastId = uidGenerator();
       subscribers[eventName].forEach(function (callback) {
         callback(__assign(__assign({}, data), {
@@ -135,19 +133,16 @@
       });
       return toastId;
     }
-
     function subscribe(eventName, callback) {
       if (!Array.isArray(subscribers[eventName])) {
         subscribers[eventName] = [];
       }
-
       subscribers[eventName].push(callback);
       var index = subscribers[eventName].length - 1;
       return function () {
         return subscribers[eventName].splice(index, 1);
       };
     }
-
     return {
       publish: publish,
       subscribe: subscribe
@@ -1754,7 +1749,6 @@
       "default": obj
     };
   }
-
   module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
   });
 
@@ -2368,37 +2362,31 @@
 
   var AlertComponent = function AlertComponent(props) {
     var _a;
-
     var alert = props.alert,
-        wrapId = props.wrapId,
-        wrapClassName = props.wrapClassName,
-        leftOrRight = props.leftOrRight,
-        onDismiss = props.onDismiss,
-        indexNumber = props.indexNumber,
-        zIndex = props.zIndex;
+      wrapId = props.wrapId,
+      wrapClassName = props.wrapClassName,
+      leftOrRight = props.leftOrRight,
+      onDismiss = props.onDismiss,
+      indexNumber = props.indexNumber,
+      zIndex = props.zIndex;
     var appearance = alert.appearance,
-        toastId = alert.toastId,
-        onClose = alert.onClose,
-        dismissIn = alert.dismissIn,
-        toastClassName = alert.toastClassName,
-        autoHiderBar = alert.autoHiderBar;
-
+      toastId = alert.toastId,
+      onClose = alert.onClose,
+      dismissIn = alert.dismissIn,
+      toastClassName = alert.toastClassName,
+      autoHiderBar = alert.autoHiderBar;
     var autoHiderBarStyle = autoHiderBar.style,
-        autoHiderBarProps = __rest(autoHiderBar, ["style"]);
-
+      autoHiderBarProps = __rest(autoHiderBar, ["style"]);
     var _b = React__namespace.useState(100),
-        width = _b[0],
-        setWidth = _b[1];
-
+      width = _b[0],
+      setWidth = _b[1];
     var toastStyle = (_a = {
       position: 'fixed',
       zIndex: zIndex + 50
     }, _a[leftOrRight] = '24px', _a);
-
     var _c = React__namespace.useState(''),
-        direction = _c[0],
-        setDirection = _c[1];
-
+      direction = _c[0],
+      setDirection = _c[1];
     var prevIndexNumber = React__namespace.useRef(indexNumber);
     var timer = React__namespace.useRef(null);
     React__namespace.useEffect(function () {
@@ -2406,25 +2394,20 @@
         setDirection('down');
         handlePauseTimer();
       }
-
       if (indexNumber < prevIndexNumber.current && indexNumber === 0) {
         setDirection('up');
         handleStartTimer();
       }
-
       prevIndexNumber.current = indexNumber;
     }, [indexNumber]);
-
     var handlePauseTimer = function handlePauseTimer() {
       clearInterval(timer.current);
     };
-
     var handleCloseToast = function handleCloseToast() {
       handlePauseTimer();
       setDirection('left');
       onDismiss(toastId, onClose);
     };
-
     var handleStartTimer = function handleStartTimer() {
       if (dismissIn) {
         var intId_1 = setInterval(function () {
@@ -2432,7 +2415,6 @@
             if (prev > 0) {
               return prev - 0.5;
             }
-
             clearInterval(intId_1);
             return prev;
           });
@@ -2440,12 +2422,10 @@
         timer.current = intId_1;
       }
     };
-
     React__namespace.useEffect(function () {
       if (dismissIn) {
         handleStartTimer();
       }
-
       setDirection('active');
     }, []);
     React__namespace.useEffect(function () {
@@ -2476,27 +2456,23 @@
 
   var AlertContainer = function AlertContainer(props) {
     var pubSubService = props.pubSubService,
-        defaultConfig = props.defaultConfig;
+      defaultConfig = props.defaultConfig;
     var transitionDelay = defaultConfig.transitionDelay,
-        position = defaultConfig.position;
-
+      position = defaultConfig.position;
     var _a = React__namespace.useState([]),
-        alerts = _a[0],
-        setAlerts = _a[1];
-
+      alerts = _a[0],
+      setAlerts = _a[1];
     var addToast = function addToast(toast) {
       setAlerts(function (existing) {
         return __spreadArrays([toast], existing);
       });
     };
-
     var removeToast = function removeToast(toastId) {
       var filteredAlerts = alerts.slice().filter(function (alert) {
         return alert.toastId !== toastId;
       });
       setAlerts(filteredAlerts);
     };
-
     React__namespace.useEffect(function () {
       var addUnsub = pubSubService.subscribe('add-toast', addToast);
       var removeUnsub = pubSubService.subscribe('remove-toast', removeToast);
@@ -2505,22 +2481,17 @@
         removeUnsub();
       };
     }, []);
-
     var dismiss = function dismiss(id, onClose) {
       removeToast(id);
       return onClose ? onClose() : null;
     };
-
     var getDismissIn = function getDismissIn(alert) {
       var dismissIn;
-
       if (alert.dismissIn) {
         dismissIn = alert.dismissIn + transitionDelay;
       }
-
       return dismissIn;
     };
-
     return /*#__PURE__*/React__namespace.createElement(reactAddonsCssTransitionGroup, {
       transitionName: "alertService",
       transitionEnterTimeout: transitionDelay,
@@ -2556,63 +2527,47 @@
     title: 'Something went wrong.',
     dismissIn: 5000
   };
-
   var AlertService = function () {
     function AlertService(config) {
       var _this = this;
-
       if (config === void 0) {
         config = {};
       }
-
       this.createDivContainer = function () {
         _this.elem = document.createElement('div');
-
         _this.elem.setAttribute('id', 'alertService-container');
-
         _this.elem.style.position = 'relative';
         _this.elem.style.zIndex = '2147483647';
       };
-
       this.renderAlert = function (config) {
         var fullConf = __assign(__assign({}, _this.config), config);
-
         _this.removeAlertService();
-
         document.body.appendChild(_this.elem);
         ReactDOM__default["default"].render( /*#__PURE__*/React__namespace.createElement(AlertContainer, {
           pubSubService: _this.pubSubService,
           defaultConfig: fullConf
         }), _this.elem);
       };
-
       this.removeAlertService = function () {
         var removed = ReactDOM__default["default"].unmountComponentAtNode(_this.elem);
         return removed;
       };
-
       this.remove = function (toastId) {
         return _this.pubSubService.publish('remove-toast', toastId);
       };
-
       this.add = function (alert) {
         var toast = alert;
-
         if (alert.autoDismiss) {
           toast.dismissIn = toast.dismissIn || 5000;
         }
-
         var toastId = _this.pubSubService.publish('add-toast', toast);
-
         return toastId;
       };
-
       this.createDivContainer();
       this.pubSubService = pubSub();
       this.config = __assign(__assign({}, defaultConf), config);
       this.renderAlert(this.config);
     }
-
     return AlertService;
   }();
 
