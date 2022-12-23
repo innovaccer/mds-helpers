@@ -90,6 +90,7 @@
     "typescript-transform-paths": "^1.1.14"
   },
   "dependencies": {
+    "@types/babel__traverse": "^7.0.6",
     "react-addons-css-transition-group": "^15.6.2"
   },
   "peerDependencies": {
