@@ -68,7 +68,7 @@
     "npm": "^6.14.7",
     "postcss-color-mod-function": "^3.0.3",
     "prettier": "^1.19.1",
-    "react": "^16.12.0",
+    "react": "16.14.0",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-is": "^16.12.0",
     "react-live": "^2.2.2",
@@ -80,12 +80,13 @@
     "storybook-chromatic": "^3.5.5",
     "ts-jest": "^24.3.0",
     "ts-loader": "^6.2.1",
+    "ts-node": "8.10.2",
     "tslint": "^6.0.0-beta0",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
     "ttypescript": "^1.5.10",
-    "typescript": "^3.7.4",
+    "typescript": "4.3.4",
     "typescript-eslint-parser": "^22.0.0",
     "typescript-transform-paths": "^1.1.14"
   },
@@ -104,5 +105,25 @@
     "Typescript",
     "Innovaccer"
   ],
-  "repository": "github:innovaccer/mds-helpers"
+  "repository": "github:innovaccer/mds-helpers",
+  "overrides": {
+    "react-addons-css-transition-group" : {
+      "react": "$react"
+    },
+    "@storybook/react" : {
+      "react": "$react"
+    },
+    "@testing-library/react" : {
+      "react": "$react"
+    },
+    "tslint-config-airbnb" : {
+      "tslint": "$tslint"
+    },
+    "tslint-react" : {
+      "tslint": "$tslint"
+    }
+  },
+  "engines": {
+    "node": ">14 <=20"
+  }
 }
