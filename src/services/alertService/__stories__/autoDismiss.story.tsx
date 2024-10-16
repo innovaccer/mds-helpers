@@ -24,9 +24,9 @@ export const AutoDismiss = () => {
   };
 
   return (
-      <>
-        <Button onClick={() => addToast(conf)}>Add toast</Button>
-      </>
+    <>
+      <Button onClick={() => addToast(conf)}>Add toast</Button>
+    </>
   );
 };
 
