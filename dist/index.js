@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1671778026327 
+   * Generated on: 1729867316496 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.2
+   *      Version: v2.0.1
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -2441,13 +2441,13 @@
       onMouseLeave: handleStartTimer,
       className: className,
       style: toastStyle
-    }, autoHiderBar && dismissIn && indexNumber === 0 && /*#__PURE__*/React__namespace.createElement("div", __assign({}, autoHiderBarProps, {
+    }, autoHiderBar && dismissIn && indexNumber === 0 && (/*#__PURE__*/React__namespace.createElement("div", __assign({}, autoHiderBarProps, {
       style: __assign(__assign({
         width: width + "%"
       }, autoHiderBarStyle), {
         backgroundColor: autoHideBarOpacity
       })
-    })), /*#__PURE__*/React__namespace.createElement(designSystem.Toast, __assign({}, alert, {
+    }))), /*#__PURE__*/React__namespace.createElement(designSystem.Toast, __assign({}, alert, {
       onClose: handleCloseToast,
       "data-test": wrapId,
       className: toastClassName
@@ -2543,7 +2543,7 @@
         var fullConf = __assign(__assign({}, _this.config), config);
         _this.removeAlertService();
         document.body.appendChild(_this.elem);
-        ReactDOM__default["default"].render( /*#__PURE__*/React__namespace.createElement(AlertContainer, {
+        ReactDOM__default["default"].render(/*#__PURE__*/React__namespace.createElement(AlertContainer, {
           pubSubService: _this.pubSubService,
           defaultConfig: fullConf
         }), _this.elem);

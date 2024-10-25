@@ -1,8 +1,8 @@
 
   /**
-   * Generated on: 1671778026158 
+   * Generated on: 1729867316358 
    *      Package: @innovaccer/helpers
-   *      Version: v1.0.2
+   *      Version: v2.0.1
    *      License: MIT
    *         Docs: https://innovaccer.github.io/mds-helpers
    */
@@ -1662,7 +1662,7 @@
       var fullConf = _objectSpread2(_objectSpread2({}, _this.config), config);
       _this.removeAlertService();
       document.body.appendChild(_this.elem);
-      ReactDOM__default["default"].render( /*#__PURE__*/React__namespace.createElement(AlertContainer, {
+      ReactDOM__default["default"].render(/*#__PURE__*/React__namespace.createElement(AlertContainer, {
         pubSubService: _this.pubSubService,
         defaultConfig: fullConf
       }), _this.elem);
