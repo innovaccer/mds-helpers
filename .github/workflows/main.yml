@@ -29,9 +29,19 @@ jobs:
         if: steps.is_release_commit.outputs.result == 1
         run: git checkout -b preparing-module-for-npm-publish && git config --global user.email "release-bot@innovaccer.com" && git config --global user.name "release-bot"
       
-      - name: setup git
+      - name: git status
         if: steps.is_release_commit.outputs.result == 1
         run: git status
+
+      - name: stage changes
+        if: steps.is_release_commit.outputs.result == 1
+        run: git add package-lock.json
+
+      - name: commit changes
+        if: steps.is_release_commit.outputs.result == 1
+        run: |
+          echo $(git log -1 --pretty=format:%s)
+          git commit -m $(git log -1 --pretty=format:%s)
 
       - name: bump module version
         if: steps.is_release_commit.outputs.result == 1
