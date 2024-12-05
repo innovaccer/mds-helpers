@@ -10,7 +10,7 @@ const defaultConf = {
       height: '4px',
       borderTopRightRadius: '2px',
       borderBottomRightRadius: '2px',
-      backgroundColor: 'rgb(0,0,0,40%)'
+      backgroundColor: 'rgb(0,0,0,48%)'
     }
   },
   position: 'left',

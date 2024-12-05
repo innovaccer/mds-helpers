@@ -78,7 +78,7 @@ const AlertComponent = (props: AlertProps) => {
   }, [width]);
 
   const className = `${wrapClassName} Toast--${appearance} alertService-${direction}`;
-  const autoHideBarOpacity = appearance === 'info' ? 'rgb(0,0,0,50%)' : 'rgb(0,0,0,40%)';
+  const autoHideBarOpacity = 'rgb(0,0,0,48%)';
   return (
     <div
       id={wrapId}
